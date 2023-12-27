@@ -1,0 +1,138 @@
+{
+    "root": true,
+    "ignorePatterns": [
+        "**/*"
+    ],
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.base.json"
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.js"
+            ],
+            "rules": {
+                "@nrwl/nx/enforce-module-boundaries": [
+                    "error",
+                    {
+                        "enforceBuildableLibDependency": true,
+                        "allow": [],
+                        "depConstraints": [
+                            {
+                                "sourceTag": "*",
+                                "onlyDependOnLibsWithTags": [
+                                    "*"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.ts"
+            ],
+            "extends": [
+                "airbnb",
+                "airbnb-typescript"
+            ],
+            "rules": {
+                "@nrwl/nx/enforce-module-boundaries": 0,
+                "import/extensions": [
+                    "error",
+                    "ignorePackages",
+                    {
+                        "js": "never",
+                        "ts": "never"
+                    }
+                ],
+                "max-len": "off",
+                "no-bitwise": "off",
+                "import/prefer-default-export": "off",
+                "no-mixed-operators": "off",
+                "arrow-parens": "off",
+                "@typescript-eslint/object-curly-spacing": "off",
+                "no-console": "off",
+                "no-restricted-syntax": "off",
+                "no-plusplus": "off",
+                "no-else-return": "off",
+                "import/no-extraneous-dependencies": "off",
+                "arrow-body-style": "off",
+                "react/function-component-definition": "off",
+                "global-require": "off",
+                "@typescript-eslint/space-before-blocks": "off",
+                "class-methods-use-this": "off",
+                "no-param-reassign": "off",
+                "@typescript-eslint/naming-convention": "off",
+                "react/require-default-props": "off",
+                "@typescript-eslint/no-use-before-define": "off",
+                "no-underscore-dangle": "off",
+                "react/no-array-index-key": "off",
+                "@typescript-eslint/no-shadow": "off",
+                "@typescript-eslint/no-throw-literal": "off",
+                "@typescript-eslint/lines-between-class-members": "off",
+                "prefer-destructuring": [
+                    "error",
+                    {
+                        "VariableDeclarator": {
+                            "array": true,
+                            "object": true
+                        },
+                        "AssignmentExpression": {
+                            "array": false,
+                            "object": false
+                        }
+                    },
+                    {
+                        "enforceForRenamedProperties": false
+                    }
+                ],
+                "indent": "off",
+                "max-classes-per-file": [
+                    "error",
+                    5
+                ],
+                "@typescript-eslint/indent": [
+                    "error",
+                    4
+                ],
+                "linebreak-style": [
+                    "error",
+                    "unix"
+                ],
+                "quotes": [
+                    "error",
+                    "single"
+                ],
+                "semi": [
+                    "error",
+                    "always"
+                ],
+                "eol-last": "error",
+                "@typescript-eslint/no-non-null-assertion": "off"
+            }
+        },
+        {
+            "files": [
+                "*.spec.ts",
+                "*.spec.js"
+            ],
+            "env": {
+                "jest": true
+            },
+            "rules": {}
+        }
+    ]
+}
