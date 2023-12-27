@@ -1,13 +1,36 @@
+import {Buffer} from 'buffer';
+
 const RAF = require('random-access-file');
 
 export type RandomAccessFileEventType = 'open' | 'close' | 'unlink';
 
+export type RandomAccessFileOptions = {
+    size?: number,
+    truncate?: boolean,
+    directory?: string,
+    readable?: boolean,
+    writable?: boolean,
+    pool?: Pool,
+    rmdir?: boolean,
+    lock?: boolean,
+    sparse?: boolean,
+    alloc?: (size: number) => Buffer,
+}
+
+
+
+export interface Pool {}
+
 export class RandomAccessFile {
-    constructor(path: string) {
-        this.raf = new RAF(path);
+    constructor(path: string, opts: RandomAccessFileOptions = {}) {
+        this.raf = new RAF(path, opts);
     }
 
     private readonly raf: any;
+
+    public static createPool(maxSize: number): Pool {
+        return RAF.createPool(maxSize);
+    }
 
     public read(offset: number, length: number): Promise<Buffer> {
         return new Promise((resolve, reject) => {
@@ -69,39 +92,25 @@ export class RandomAccessFile {
         });
     }
 
-    public close(onClose?: () => void): Promise<void> {
+    public close(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.raf.close((err: any) => {
                 if (err) {
                     reject(err);
                 } else {
-                    try {
-                        if (onClose) {
-                            onClose();
-                        }
-                        resolve();
-                    } catch (err) {
-                        reject(err);
-                    }
+                    resolve();
                 }
             });
         });
     }
 
-    public unlink(onClose?: () => void): Promise<void> {
+    public unlink(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.raf.unlink((err: any) => {
                 if (err) {
                     reject(err);
                 } else {
-                    try {
-                        if (onClose) {
-                            onClose();
-                        }
-                        resolve();
-                    } catch (err) {
-                        reject(err);
-                    }
+                    resolve();
                 }
             });
         });
