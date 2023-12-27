@@ -7,8 +7,11 @@
     "sourceMap": true,
     "target": "es2019",
     "declaration": true,
+    "skipLibCheck": true,
     "outDir": "./dist"
   },
   "include": ["src/**/*"],
-  "exclude": ["src/tests/**/*"]
+  "exclude": [
+    "src/tests/**/*"
+  ]
 }

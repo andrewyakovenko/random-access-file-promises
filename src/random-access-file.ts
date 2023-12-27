@@ -107,7 +107,7 @@ export class RandomAccessFile {
         });
     }
 
-    public on(event: string, listener: (...args: any[]) => void): void {
+    public on(event: RandomAccessFileEventType, listener: (...args: any[]) => void): void {
         this.raf.on(event, listener);
     }
 }
