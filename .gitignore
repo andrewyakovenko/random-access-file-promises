@@ -129,6 +129,7 @@ dist
 .pnp.*
 
 .idea
+tmp/
 
 # I hate tracking package-lock.json files into git, but I'm ready to be convinced to do so.
 package-lock.json
