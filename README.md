@@ -59,8 +59,8 @@ Unlinks the file, removes the directories up to `opts.directory` if `opts.rmdir`
 #### `static createPool(maxSize: number): Pool`
 Creates a new `Pool` instance of size `maxSize`.
 
-### `withFile(path: string, callback: (file: RandomAccessFile) => Promise<void>, opts?: RandomAccessFileOptions): Promise<void>`
-Opens the file, calls the callback with the file instance and closes the file when the callback returns or errors out.
+### `withFile<T>(path: string, callback: (file: RandomAccessFile) => Promise<T>, opts?: RandomAccessFileOptions): Promise<T>`
+Opens the file, calls the callback with the file instance and closes the file when the callback returns or errors out. Returns whatever the callback has returned.
 
 ### `interface RandomAccessFileOptions`
 Options for `RandomAccessFile` class.
